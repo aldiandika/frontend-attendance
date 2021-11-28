@@ -1,8 +1,7 @@
 import { Card, CardContent, CardHeader, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 
-const UserInfoTable = ({ usersData }) => {
-
+const AttendanceTable = ({ attendanceData }) => {
   return (
     <>
       <Card
@@ -10,7 +9,7 @@ const UserInfoTable = ({ usersData }) => {
           overflow: 'auto'
         }}
       >
-        <CardHeader title="Data Info Pegawai" />
+        <CardHeader title="Data Kehadiran Pegawai" />
         <CardContent>
           <Table>
             <TableHead>
@@ -47,52 +46,75 @@ const UserInfoTable = ({ usersData }) => {
                   <Typography
                     fontWeight={700}
                   >
-                    Jumlah Izin
+                    Jam Masuk
                   </Typography>
                 </TableCell>
                 <TableCell>
                   <Typography
                     fontWeight={700}
                   >
-                    Jumlah Alpha
+                    Jam Keluar
                   </Typography>
-
                 </TableCell>
                 <TableCell>
                   <Typography
                     fontWeight={700}
                   >
-                    Jumlah Hadir
+                    Tanggal
                   </Typography>
-
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    fontWeight={700}
+                  >
+                    Bulan
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    fontWeight={700}
+                  >
+                    Tahun
+                  </Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
-              {usersData.map((user) => (
+              {attendanceData.map((data) => (
                 <TableRow>
                   <TableCell>
-                    {user.nip}
+                    {data.nip}
                   </TableCell>
                   <TableCell>
-                    {user.nama_pegawai}
+                    {data.nama_pegawai}
                   </TableCell>
                   <TableCell>
-                    {user.jabatan_fungsional}
+                    {data.jabatan_fungsional}
                   </TableCell>
                   <TableCell>
-                    {user.jabatan_struktural}
+                    {data.jabatan_struktural}
                   </TableCell>
                   <TableCell>
-                    {user.jumlah_izin}
+                    {
+                      (data.jam_masuk === "0") ? "-" : data.jam_masuk
+                    }
                   </TableCell>
                   <TableCell>
-                    {user.jumlah_alpha}
+                    {
+                      (data.jam_keluar === "0") ? "-" : data.jam_keluar
+                    }
                   </TableCell>
                   <TableCell>
-                    {user.jumlah_hadir}
+                    {data.tanggal}
                   </TableCell>
+                  <TableCell>
+                    {data.bulan}
+                  </TableCell>
+                  <TableCell>
+                    {data.tahun}
+                  </TableCell>
+
                 </TableRow>
               ))}
             </TableBody>
@@ -102,8 +124,8 @@ const UserInfoTable = ({ usersData }) => {
       </Card>
 
     </>
-  )
 
+  )
 }
 
-export default UserInfoTable;
+export default AttendanceTable;

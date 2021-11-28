@@ -9,12 +9,14 @@ import {
   Box
 } from '@mui/material';
 import UserInfoTable from "../components/user_info_table";
+import AttendanceTable from "../components/attendance_table";
 
 
 class Dashboard extends React.Component {
   state = {
     userInfo: {},
     usersData: {},
+    attendData: [],
     isMobileNavOpen: false,
     isLoggedIn: true
   }
@@ -32,10 +34,31 @@ class Dashboard extends React.Component {
       res => {
         const dataRequester = res.data.requester;
         const usersDataBulk = res.data.message;
-        console.log(dataRequester);
         this.setState({
           userInfo: dataRequester,
           usersData: usersDataBulk
+        });
+      }
+    ).catch(
+      err => {
+        console.log(err)
+        this.setState({ isLoggedIn: false })
+      }
+    )
+
+    axios({
+      method: "get",
+      url: urls.get_att,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(
+      res => {
+        const attDataBulk = res.data.message;
+        console.log(attDataBulk);
+        this.setState({
+          attendData: attDataBulk
         });
       }
     ).catch(
@@ -67,7 +90,8 @@ class Dashboard extends React.Component {
                 <Box
                   sx={{
                     paddingTop: 10,
-                    height: '200vh',
+                    paddingBottom: 10,
+                    height: '100%',
                     backgroundColor: 'background.default',
                     overflow: 'scroll'
                   }}
@@ -77,6 +101,8 @@ class Dashboard extends React.Component {
                   <UserInfoTable
                     usersData={this.state.usersData}
                   />
+                  <br />
+                  <AttendanceTable attendanceData={this.state.attendData} />
                 </Box>
               </>
             ) : (
