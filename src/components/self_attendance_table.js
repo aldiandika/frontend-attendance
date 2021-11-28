@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  CardHeader,
   Table,
   TableBody,
   TableCell,
@@ -9,9 +8,14 @@ import {
   TableRow,
   Typography
 } from "@mui/material";
+import { useState, useEffect } from "react";
 
+const SelfAttendanceTable = ({ userName, selfAttendanceData }) => {
+  const [cardTitle, setCardTitle] = useState("Data Kehadiran");
 
-const AttendanceTable = ({ attendanceData }) => {
+  useEffect(() => {
+    setCardTitle(`Data kehadiran ${userName}`);
+  }, [userName])
   return (
     <>
       <Card
@@ -19,7 +23,15 @@ const AttendanceTable = ({ attendanceData }) => {
           overflow: 'auto'
         }}
       >
-        <CardHeader title="Data Kehadiran Pegawai" />
+        <Typography
+          sx={{
+            textTransform: 'capitalize',
+            fontWeight: 700,
+            p: 2
+          }}
+        >
+          {cardTitle}
+        </Typography>
         <CardContent>
           <Table>
             <TableHead>
@@ -91,42 +103,45 @@ const AttendanceTable = ({ attendanceData }) => {
             </TableHead>
 
             <TableBody>
-              {attendanceData.map((data) => (
-                <TableRow>
-                  <TableCell>
-                    {data.nip}
-                  </TableCell>
-                  <TableCell>
-                    {data.nama_pegawai}
-                  </TableCell>
-                  <TableCell>
-                    {data.jabatan_fungsional}
-                  </TableCell>
-                  <TableCell>
-                    {data.jabatan_struktural}
-                  </TableCell>
-                  <TableCell>
-                    {
-                      (data.jam_masuk === "0") ? "-" : data.jam_masuk
-                    }
-                  </TableCell>
-                  <TableCell>
-                    {
-                      (data.jam_keluar === "0") ? "-" : data.jam_keluar
-                    }
-                  </TableCell>
-                  <TableCell>
-                    {data.tanggal}
-                  </TableCell>
-                  <TableCell>
-                    {data.bulan}
-                  </TableCell>
-                  <TableCell>
-                    {data.tahun}
-                  </TableCell>
-
-                </TableRow>
-              ))}
+              {selfAttendanceData ? (
+                selfAttendanceData.map((data) => (
+                  <TableRow>
+                    <TableCell>
+                      {data.nip}
+                    </TableCell>
+                    <TableCell>
+                      {data.nama_pegawai}
+                    </TableCell>
+                    <TableCell>
+                      {data.jabatan_fungsional}
+                    </TableCell>
+                    <TableCell>
+                      {data.jabatan_struktural}
+                    </TableCell>
+                    <TableCell>
+                      {
+                        (data.jam_masuk === "0") ? "-" : data.jam_masuk
+                      }
+                    </TableCell>
+                    <TableCell>
+                      {
+                        (data.jam_keluar === "0") ? "-" : data.jam_keluar
+                      }
+                    </TableCell>
+                    <TableCell>
+                      {data.tanggal}
+                    </TableCell>
+                    <TableCell>
+                      {data.bulan}
+                    </TableCell>
+                    <TableCell>
+                      {data.tahun}
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <>Tidak ada data kehadiran</>
+              )}
             </TableBody>
           </Table>
 
@@ -134,8 +149,7 @@ const AttendanceTable = ({ attendanceData }) => {
       </Card>
 
     </>
-
   )
 }
 
-export default AttendanceTable;
+export default SelfAttendanceTable;

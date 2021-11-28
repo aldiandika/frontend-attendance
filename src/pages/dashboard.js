@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import UserInfoTable from "../components/user_info_table";
 import AttendanceTable from "../components/attendance_table";
+import SelfAttendanceTable from "../components/self_attendance_table";
 
 
 class Dashboard extends React.Component {
@@ -17,6 +18,7 @@ class Dashboard extends React.Component {
     userInfo: {},
     usersData: {},
     attendData: [],
+    selfAttendData: [],
     isMobileNavOpen: false,
     isLoggedIn: true
   }
@@ -56,9 +58,11 @@ class Dashboard extends React.Component {
     }).then(
       res => {
         const attDataBulk = res.data.message;
-        console.log(attDataBulk);
+        const selfAttBulk = res.data.self_attendance;
+        console.log(selfAttBulk);
         this.setState({
-          attendData: attDataBulk
+          attendData: attDataBulk,
+          selfAttendData: selfAttBulk,
         });
       }
     ).catch(
@@ -92,12 +96,17 @@ class Dashboard extends React.Component {
                     paddingTop: 10,
                     paddingBottom: 10,
                     height: '100%',
+                    minHeight: '100vh',
                     backgroundColor: 'background.default',
                     overflow: 'scroll'
                   }}
                   paddingLeft={{ xs: 2, sm: 4, md: 34, lg: 34 }}
                   paddingRight={2}
                 >
+                  <SelfAttendanceTable
+                    selfAttendanceData={this.state.selfAttendData}
+                  />
+                  <br />
                   <UserInfoTable
                     usersData={this.state.usersData}
                   />
@@ -109,10 +118,20 @@ class Dashboard extends React.Component {
               <>
                 <Box
                   sx={{
-                    paddingTop: "3em"
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    height: '100%',
+                    minHeight: '100vh',
+                    backgroundColor: 'background.default',
+                    overflow: 'scroll'
                   }}
+                  paddingLeft={{ xs: 2, sm: 4, md: 34, lg: 34 }}
+                  paddingRight={2}
                 >
-                  Bukan admin
+                  <SelfAttendanceTable
+                    userName={this.state.usersData.nama_pegawai}
+                    selfAttendanceData={this.state.selfAttendData}
+                  />
                 </Box>
               </>
             )}
