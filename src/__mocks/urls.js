@@ -6,7 +6,7 @@ const urls = {
 
   "login_url": 'http://localhost:8000/api/login',
 
-  "get_user": 'http://localhost:8000/get-user'
+  "user_info": 'http://localhost:8000/api/user-info'
 };
 
 export default urls;
