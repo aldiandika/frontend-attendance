@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Card, CardContent, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 
 
 const UserInfoTable = ({ usersData }) => {
@@ -10,7 +10,15 @@ const UserInfoTable = ({ usersData }) => {
           overflow: 'auto'
         }}
       >
-        <CardHeader title="Data Info Pegawai" />
+        <Typography
+          sx={{
+            textTransform: 'capitalize',
+            fontWeight: 700,
+            p: 2
+          }}
+        >
+          Data Info Pegawai
+        </Typography>
         <CardContent>
           <Table>
             <TableHead>

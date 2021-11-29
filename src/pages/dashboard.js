@@ -71,6 +71,7 @@ class Dashboard extends React.Component {
         this.setState({ isLoggedIn: false })
       }
     )
+
   }
 
   render() {
@@ -80,7 +81,7 @@ class Dashboard extends React.Component {
         render={() => this.state.isLoggedIn ? (
           <>
             <Helmet>
-              <title>Login | Aplikasi Kehadiran Divusi</title>
+              <title>Dashboard | Aplikasi Kehadiran Divusi</title>
             </Helmet>
             <Navbar onMobileNavOpen={() => this.setState({ isMobileNavOpen: true })} />
             <Sidebar
@@ -104,6 +105,7 @@ class Dashboard extends React.Component {
                   paddingRight={2}
                 >
                   <SelfAttendanceTable
+                    userName={this.state.userInfo.nama_pegawai}
                     selfAttendanceData={this.state.selfAttendData}
                   />
                   <br />
@@ -114,6 +116,7 @@ class Dashboard extends React.Component {
                   <AttendanceTable attendanceData={this.state.attendData} />
                 </Box>
               </>
+
             ) : (
               <>
                 <Box
@@ -135,7 +138,6 @@ class Dashboard extends React.Component {
                 </Box>
               </>
             )}
-
 
           </>
         ) : (

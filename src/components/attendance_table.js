@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  CardHeader,
   Table,
   TableBody,
   TableCell,
@@ -19,7 +18,15 @@ const AttendanceTable = ({ attendanceData }) => {
           overflow: 'auto'
         }}
       >
-        <CardHeader title="Data Kehadiran Pegawai" />
+        <Typography
+          sx={{
+            textTransform: 'capitalize',
+            fontWeight: 700,
+            p: 2
+          }}
+        >
+          Data Kehadiran Pegawai
+        </Typography>
         <CardContent>
           <Table>
             <TableHead>

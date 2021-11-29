@@ -66,7 +66,7 @@ const LoginPage = () => {
             }}
           >
             <Typography
-              color="textSecondary"
+              color="text.secondary"
               gutterBottom
               variant="h3"
               align="center"
@@ -84,7 +84,7 @@ const LoginPage = () => {
                     Sign in
                   </Typography>
                   <Typography
-                    color="textSecondary"
+                    color="text.secondary"
                     gutterBottom
                     variant="body2"
                   >

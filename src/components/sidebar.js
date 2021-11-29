@@ -30,12 +30,12 @@ const Sidebar = ({
       title: 'Dashboard'
     },
     {
-      href: '/kehadiran',
+      href: '/input-kehadiran',
       icon: PersonIcon,
       title: 'Kehadiran'
     },
     {
-      href: '/perizinan',
+      href: '/input-izin',
       icon: EventNoteIcon,
       title: 'Perizinan'
     },
@@ -105,6 +105,8 @@ const Sidebar = ({
           ))}
         </List>
       </Box>
+      <Box sx={{ flexGrow: 1 }} />
+
     </Box>
 
   );
