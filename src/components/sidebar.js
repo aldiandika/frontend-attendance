@@ -16,13 +16,15 @@ import PersonIcon from '@mui/icons-material/Person';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import SideItem from '../components/side_item';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DownloadIcon from '@mui/icons-material/Download';
 
 
 const Sidebar = ({
   onMobileClose,
   openMobile,
   user,
-  logoutFun
+  logoutFun,
+  downloadRecFun
 }) => {
 
   const itemsAdmin = [
@@ -40,7 +42,7 @@ const Sidebar = ({
       href: '/input-izin',
       icon: EventNoteIcon,
       title: 'Perizinan'
-    },
+    }
   ];
 
   const content = (
@@ -105,6 +107,26 @@ const Sidebar = ({
               icon={item.icon}
             />
           ))}
+          <Button
+            sx={{
+              color: 'text.secondary',
+              fontWeight: 'medium',
+              justifyContent: 'flex-start',
+              letterSpacing: 0,
+              py: 1.25,
+              textTransform: 'none',
+              width: '100%',
+              '& svg': {
+                mr: 1
+              },
+            }}
+            onClick={downloadRecFun}
+          >
+            <DownloadIcon />
+            <span>
+              Download Record
+            </span>
+          </Button>
         </List>
       </Box>
       <Box sx={{ flexGrow: 1 }} />

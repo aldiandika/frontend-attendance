@@ -80,7 +80,6 @@ class Dashboard extends React.Component {
       const dataToken = {
         'token': token
       }
-      console.log(dataToken);
       axios({
         method: "post",
         url: urls.logout,
@@ -103,6 +102,38 @@ class Dashboard extends React.Component {
       )
     }
 
+    const downloadRecFun = () => {
+      const token = localStorage.getItem('token');
+
+      const dataToken = {
+        'token': token
+      }
+      axios({
+        method: "get",
+        url: urls.get_csv,
+        data: dataToken,
+        responseType: 'blob',
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'text/csv'
+        }
+      }).then(
+        res => {
+          const url = window.URL.createObjectURL(new Blob([res.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'FileRecordPegawai.csv');
+          document.body.appendChild(link);
+          link.click();
+        }
+      ).catch(
+        err => {
+          console.log(err)
+        }
+      )
+    }
+
     return (
       <Route
         render={() => this.state.isLoggedIn ? (
@@ -116,6 +147,7 @@ class Dashboard extends React.Component {
               openMobile={this.state.isMobileNavOpen}
               user={this.state.userInfo}
               logoutFun={logoutFun}
+              downloadRecFun={downloadRecFun}
             />
 
             {this.state.userInfo.role === 'admin' ? (

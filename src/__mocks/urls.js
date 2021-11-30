@@ -20,6 +20,8 @@ const urls = {
 
   "logout": 'http://localhost:8000/api/logout',
 
+  "get_csv": 'http://localhost:8000/api/csv'
+
 };
 
 export default urls;
