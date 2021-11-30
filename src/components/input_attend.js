@@ -45,7 +45,6 @@ const InputAttend = ({
       }
     }).then(
       res => {
-        console.log(res.data)
         if (res.data.success) {
           setIsCheckIn(res.data.message)
         }
@@ -68,7 +67,6 @@ const InputAttend = ({
       }
     }).then(
       res => {
-        console.log(res.data)
         if (res.data.success) {
           setIsCheckOut(res.data.message)
         }

@@ -12,7 +12,11 @@ const urls = {
 
   "get_att_now": 'http://localhost:8000/api/attend-now',
 
-  "input_attend": 'http://localhost:8000/api/attend'
+  "input_attend": 'http://localhost:8000/api/attend',
+
+  "input_perm": 'http://localhost:8000/api/input-perm',
+
+  "perm_now": 'http://localhost:8000/api/perm-now'
 };
 
 export default urls;

@@ -59,7 +59,6 @@ class Dashboard extends React.Component {
       res => {
         const attDataBulk = res.data.message;
         const selfAttBulk = res.data.self_attendance;
-        console.log(selfAttBulk);
         this.setState({
           attendData: attDataBulk,
           selfAttendData: selfAttBulk,
