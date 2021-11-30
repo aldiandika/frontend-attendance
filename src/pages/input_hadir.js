@@ -6,7 +6,9 @@ import urls from "../__mocks/urls";
 import axios from 'axios';
 import { Redirect, Route } from "react-router";
 import {
-  Box
+  Box,
+  Card,
+  Typography
 } from '@mui/material';
 import InputAttend from "../components/input_attend";
 
@@ -16,6 +18,7 @@ class InputKehadiran extends React.Component {
     isMobileNavOpen: false,
     userInfo: {},
     attendNow: {},
+    permNow: {},
     isLoggedIn: true
   }
 
@@ -75,9 +78,32 @@ class InputKehadiran extends React.Component {
     }).then(
       res => {
         const attNowBulk = res.data.message;
-        console.log(attNowBulk);
+        // console.log(attNowBulk);
         this.setState({
           attendNow: attNowBulk
+        });
+      }
+    ).catch(
+      err => {
+        console.log(err)
+        this.setState({ isLoggedIn: false })
+      }
+    )
+
+    // Get perm now
+    axios({
+      method: "get",
+      url: urls.perm_now,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(
+      res => {
+        const dataPermNow = res.data.message;
+        // console.log(dataPermNow);
+        this.setState({
+          permNow: dataPermNow
         });
       }
     ).catch(
@@ -116,11 +142,38 @@ class InputKehadiran extends React.Component {
               paddingLeft={{ xs: 2, sm: 4, md: 34, lg: 34 }}
               paddingRight={2}
             >
-              <InputAttend
-                userInfo={this.state.userInfo}
-                userAttend={this.state.selfAttendData}
-                userAttendNow={this.state.attendNow}
-              />
+              {this.state.permNow ? (
+                <Card>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '100%',
+                      backgroundColor: 'grey',
+                      p: 2
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: "1.5em",
+                        fontWeight: 700,
+                        textTransform: "capitalize",
+                        fontColor: "text.primary"
+                      }}
+                    >
+                      Anda Izin Hari Ini
+                    </Typography>
+                  </Box>
+                </Card>
+              ) : (
+                <InputAttend
+                  userInfo={this.state.userInfo}
+                  userAttendNow={this.state.attendNow}
+                />
+              )}
+
             </Box>
 
           </>

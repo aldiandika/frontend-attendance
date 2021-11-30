@@ -6,7 +6,6 @@ import urls from '../__mocks/urls';
 
 const InputAttend = ({
   userInfo,
-  userAttend,
   userAttendNow
 }) => {
 

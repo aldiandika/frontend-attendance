@@ -80,7 +80,7 @@ class InputPermission extends React.Component {
     }).then(
       res => {
         const dataPermNow = res.data.message;
-        console.log(dataPermNow);
+        // console.log(dataPermNow);
         this.setState({
           permNow: dataPermNow
         });

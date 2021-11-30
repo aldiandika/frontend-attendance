@@ -41,7 +41,7 @@ const InputPermCard = () => {
     const token = localStorage.getItem('token');
     axios({
       method: "post",
-      url: urls.login_url,
+      url: urls.input_perm,
       data: alasanData,
       headers: {
         "Content-Type": "application/json",
