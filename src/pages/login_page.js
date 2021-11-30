@@ -9,11 +9,40 @@ import { useFormik } from "formik";
 import { Helmet } from "react-helmet";
 import axios from 'axios';
 import urls from '../__mocks/urls';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Redirect } from "react-router";
 
 const LoginPage = () => {
   const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem('token');
+
+      axios({
+        method: "get",
+        url: urls.user_info,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': 'Bearer ' + token
+        }
+      }).then(
+        res => {
+          console.log(res.data.success);
+          if (res.data.success) {
+            setRedirect(true);
+          }
+        }
+      ).catch(
+        err => {
+          console.log(err)
+        }
+      )
+
+    } catch (e) {
+      console.log(e);
+    }
+  }, [])
 
   const { handleSubmit, getFieldProps } = useFormik({
     initialValues: {

@@ -56,7 +56,7 @@ class InputKehadiran extends React.Component {
     }).then(
       res => {
         const selfAttBulk = res.data.self_attendance;
-        console.log(selfAttBulk);
+        // console.log(selfAttBulk);
         this.setState({
           selfAttendData: selfAttBulk,
         });

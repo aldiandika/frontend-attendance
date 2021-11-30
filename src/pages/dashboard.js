@@ -74,6 +74,34 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    const logoutFun = () => {
+      const token = localStorage.getItem('token');
+
+      const dataToken = {
+        'token': token
+      }
+      console.log(dataToken);
+      axios({
+        method: "post",
+        url: urls.logout,
+        data: dataToken,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          'Authorization': 'Bearer ' + token
+        }
+      }).then(
+        res => {
+          console.log(res);
+          if (res.data.success) {
+            this.setState({ isLoggedIn: false })
+          }
+        }
+      ).catch(
+        err => {
+          console.log(err)
+        }
+      )
+    }
 
     return (
       <Route
@@ -87,6 +115,7 @@ class Dashboard extends React.Component {
               onMobileClose={() => this.setState({ isMobileNavOpen: false })}
               openMobile={this.state.isMobileNavOpen}
               user={this.state.userInfo}
+              logoutFun={logoutFun}
             />
 
             {this.state.userInfo.role === 'admin' ? (

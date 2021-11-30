@@ -1,7 +1,7 @@
 import {
   Avatar,
   Box,
-  // Button,
+  Button,
   Divider,
   Drawer,
   Hidden,
@@ -15,12 +15,14 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import SideItem from '../components/side_item';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const Sidebar = ({
   onMobileClose,
   openMobile,
-  user
+  user,
+  logoutFun
 }) => {
 
   const itemsAdmin = [
@@ -106,7 +108,34 @@ const Sidebar = ({
         </List>
       </Box>
       <Box sx={{ flexGrow: 1 }} />
+      <Box
+        sx={{
+          display: 'flex',
+          p: 2,
 
+        }}
+      >
+        <Button
+          sx={{
+            color: 'red',
+            fontWeight: 'medium',
+            justifyContent: 'flex-start',
+            letterSpacing: 0,
+            py: 1.25,
+            textTransform: 'none',
+            width: '100%',
+            '& svg': {
+              mr: 1
+            },
+          }}
+          onClick={logoutFun}
+        >
+          <LogoutIcon />
+          <span>
+            logout
+          </span>
+        </Button>
+      </Box>
     </Box>
 
   );

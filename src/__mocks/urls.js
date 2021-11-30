@@ -16,7 +16,10 @@ const urls = {
 
   "input_perm": 'http://localhost:8000/api/input-perm',
 
-  "perm_now": 'http://localhost:8000/api/perm-now'
+  "perm_now": 'http://localhost:8000/api/perm-now',
+
+  "logout": 'http://localhost:8000/api/logout',
+
 };
 
 export default urls;
