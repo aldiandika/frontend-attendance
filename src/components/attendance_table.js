@@ -15,7 +15,8 @@ const AttendanceTable = ({ attendanceData }) => {
     <>
       <Card
         sx={{
-          overflow: 'auto'
+          overflow: 'auto',
+          maxHeight: '100vh'
         }}
       >
         <Typography

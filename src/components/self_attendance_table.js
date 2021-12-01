@@ -20,7 +20,8 @@ const SelfAttendanceTable = ({ userName, selfAttendanceData }) => {
     <>
       <Card
         sx={{
-          overflow: 'auto'
+          overflow: 'auto',
+          maxHeight: '40vh'
         }}
       >
         <Typography
